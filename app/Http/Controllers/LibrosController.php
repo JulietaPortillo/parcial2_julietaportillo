@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Libros;
 class LibrosController extends Controller
 {
     public function index()
@@ -14,7 +14,7 @@ class LibrosController extends Controller
 
     public function store(Request $request)
     {
-        $libros = new libro([
+        $libros = new Libros([
             'name' => $request->input('name'),
             'detail' => $request->input('detail'),
             'author' => $request->input('author'),
@@ -27,20 +27,20 @@ class LibrosController extends Controller
 
     public function show($id)
     {
-        $libro = Libros::find($id);
-        return response()->json($libro);
+        $libros = Libros::find($id);
+        return response()->json($libros);
     }
 
     public function update($id, Request $request)
     {
-        $libro = Libros::find($id);
+        $libros = Libros::find($id);
         $libros->update($request->all());
         return response()->json('Libro Actualizado');
     }
 
     public function destroy($id)
     {
-        $libro = Libros::find($id);
+        $libros = Libros::find($id);
         $libros->delete();
         return response()->json('Libro Eliminado!');
     }
